@@ -1,6 +1,6 @@
 # Data Server - Record Shop Workshops
 
-This repo hosts a series of workshops on creating a traditional RESTfull API using Node, Express and Mongoose. The workshops are following DCI's curriculum structure. A basic reference on how we move in our project is this series of tutorials by [Academind](https://www.youtube.com/playlist?list=PL55RiY5tL51q4D-B63KBnygU6opNPFk_q). Please bookmark the video playlist for future reference.
+This repo hosts a series of workshops on creating a traditional RESTfull API using Node, Express and Mongoose. The workshops are following DCI's curriculum structure. A basic reference on how we move in our project is this series of tutorials by [Academind](https://www.youtube.com/playlist?list=PL55RiY5tL51q4D-B63KBnygU6opNPFk_q). Please bookmark the video playlist for future reference. :crystal_ball:
 
 ## The way it works
 
