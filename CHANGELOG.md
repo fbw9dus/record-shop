@@ -4,7 +4,8 @@ This changelog is ordered in reverse chronological order, meaning that the last 
 
 ## Stage 0: Boilerplate
 
-This branch contains a boilerplate for almost every express server you are going to create, as long as you are using mongodb for your DB. This boilerplate consists of:
+This branch contains a boilerplate for almost every express server you are going to create.  
+This boilerplate consists of:
 
 - Files create by [`npx express-generator`](https://expressjs.com/en/starter/generator.html), using the `--no-view` and `--git` flags, slightly modified and modernised.
 
