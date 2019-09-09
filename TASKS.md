@@ -14,7 +14,7 @@ Most applications made for the web have to do with some sort of data manipulatio
 
 **TODO**:
 
-1. Please create two endpoints(routes) for the shop owner
+1. Please create two endpoints (routes) for the shop owner
 
    - `api/records` -> a `GET` that will return all records of the store
    - `api/records` -> a `POST` that will add a new record to the record collection
