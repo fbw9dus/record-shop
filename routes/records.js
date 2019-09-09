@@ -11,7 +11,6 @@ const db = low(adapter);
 router.get('/', function(req, res, next) {
     const records = db.get('records')
         .value()
-
     res.status(200).send(records)
 });
 
@@ -20,7 +19,13 @@ router.get('/', function(req, res, next) {
  * POST a record
  */
 router.post('/', function(req, res, next) {
-    res.send('Here we shall return the new stored record they user send');
+    let record = req.body;
+    db.get('records').push(record)
+        .last()
+        .assign({ id: Date.now().toString() })
+        .write()
+        
+    res.status(200).send(record);
 });
 
 module.exports = router;
