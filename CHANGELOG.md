@@ -2,6 +2,14 @@
 
 This changelog is ordered in reverse chronological order, meaning that the last changes made will always be on top of the file, so that readers will not have to scroll all the way down with each change.
 
+## Stage 1: Middleware and CORS
+In this branch we created our own middleware functions
+
+    - We created a middleware directory
+    - We set up a middleware function that will add headers to each request
+    - We incorporated it in our app.
+
+
 ## Stage 1: Mock database and controllers
 In this branch we have set up our initial structure for our API
 
