@@ -10,6 +10,7 @@ const FileSync = require('lowdb/adapters/FileSync');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const recordsRouter = require('./routes/records');
+const { setCors } = require("./middleware/security");
 
 /** INIT */
 const app = express();
@@ -28,6 +29,7 @@ db.defaults({ records:[] }).write();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(setCors);
 
 /** STATIC FILES*/
 app.use(express.static(path.join(__dirname, 'public')));
