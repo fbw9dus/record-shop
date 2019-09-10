@@ -2,6 +2,16 @@
 
 This file lists the changes that need to be made in each stage. It is ordered in reverse chronological order, meaning that the last changes made will always be on top of the file, so that readers will not have to scroll all the way down with each task added.
 
+## Task 02 - Middleware and CORS
+Middleware functions are functions that have access to the request object (req), the response object (res), and the next middleware function in the application’s request-response cycle. The next middleware function is commonly denoted by a variable named `next`. There are a number of already made middleware functions we can use and we can also build our own custome middleware functions. You can already see that by default your express app is already using `morgan` and `express.json()` as it's middleware.
+
+Cross-Origin Resource Sharing (CORS) is a mechanism that uses additional HTTP headers to tell browsers to permit a web application running at one origin access selected resources from a different origin. A web application executes a cross-origin HTTP request when it requests a resource that has a different origin (domain, protocol, or port) from its own.
+
+**TODO**:
+
+1. Please create your own middleware function that will take care of enabling CORS for each request. Create a middleware directory. Add your middleware function in that directory and then use it within your app.
+
+
 ## Task 01 - Mock database and Controllers
 
 Most applications made for the web have to do with some sort of data manipulation. In order to be able to manipulate our data we have to do two things first:
