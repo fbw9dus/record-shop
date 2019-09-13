@@ -9,7 +9,6 @@ exports.getRecords = async (req, res, next) => {
     res.status(200).send(records);
 }
 
-
 exports.addRecord = async (req, res, next) => {
     const record = req.body;
     db.get('records').push(record)
