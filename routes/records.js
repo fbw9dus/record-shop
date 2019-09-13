@@ -4,15 +4,16 @@ const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('data/db.json');
 const db = low(adapter);
-const { getRecords, addRecord } = require('../controllers/recordsController');
+const { getRecords, getRecord, addRecord } = require('../controllers/recordsController');
 
 
-/**
- * GET all records
- */
 router.
     route('/').   
     get(getRecords).
     post(addRecord);
+
+router.
+    route('/:id').   
+    get(getRecord);
 
 module.exports = router;
