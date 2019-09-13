@@ -15,6 +15,12 @@ exports.getRecord = async (req, res, next) => {
     res.status(200).send(record);
 }
 
+exports.deleteRecord = async (req, res, next) => {
+    const { id } = req.params;
+    const record = db.get('records').remove({ id });
+    res.status(200).send(record);
+}
+
 exports.addRecord = async (req, res, next) => {
     const record = req.body;
     db.get('records').push(record)
