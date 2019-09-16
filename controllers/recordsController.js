@@ -24,7 +24,7 @@ exports.deleteRecord = async (req, res, next) => {
 exports.updateRecord = async (req, res, next) => {
     const { id } = req.params;
     const dt = req.body;
-    const record = db.get('records').find({ id }).assign(dt);
+    const record = db.get('records').find({ id }).assign(dt).write();
     res.status(200).send(record);
 }
 

@@ -22,7 +22,7 @@ app.use(logger('dev'));
 /** SETTING UP LOWDB */
 const adapter = new FileSync('data/db.json');
 const db = low(adapter);
-db.defaults({ records:[] }).write();
+db.defaults({ records:[] , users:[]}).write();
 
 
 /** REQUEST PARSERS */
