@@ -17,7 +17,7 @@ exports.getUser = async (req, res, next) => {
 
 exports.deleteUser = async (req, res, next) => {
     const { id } = req.params;
-    const user = db.get('users').remove({ id });
+    const user = db.get('users').remove({ id }).write();
     res.status(200).send(user);
 }
 
