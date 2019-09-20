@@ -33,7 +33,7 @@ exports.addOrder = (req, res, next) => {
     db.get('orders').push(order)
         .last()
         .assign({ id: Date.now().toString() })
-        .write()
+        .write();
 
     res.status(200).send(order);
 }
