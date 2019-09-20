@@ -2,6 +2,21 @@
 
 This file lists the changes that need to be made in each stage. It is ordered in reverse chronological order, meaning that the last changes made will always be on top of the file, so that readers will not have to scroll all the way down with each task added.
 
+## Task 04 - Mongoose and Seeding
+In this task we will introduce Mongoose. Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js. It manages relationships between data, provides schema validation, and is used to translate between objects in code and the representation of those objects in MongoDB.
+We will learn how to setup Mongoose and how to connect it with our app. We will create our user models and schemas and define exactly how a record/user/order object will look. After defining our models, we will get rid of lowdb, and store everything on our own beautiful database.
+The next step will be to create a feed function that will feed our database with some fake data so we will be able to test all our endpoints straight away after initialising our server.
+
+**TODO**:
+
+1. Please set up mongoose in your server.
+2. Create a data schema and a model for our records.
+3. Update our records endpoints so they store our data to our database and not to lowdb file.
+4. Test with postman that everything works as they should for our records model.
+5. Do the same for the user and orders endpoints.
+6. Write a seed script using faker that will run everytime we start our project. If the database is empty, it will feed it some records, orders and users.
+
+
 ## Task 03 - Routing and error handling
 As we saw in the first task, there are requests like `GET` and `POST` that define what is the functionality of each endpoint. We will now introduce `PUT` and `DELETE`.
   
