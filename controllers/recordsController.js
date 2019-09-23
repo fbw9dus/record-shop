@@ -35,6 +35,7 @@ exports.updateRecord = async (req, res, next) => {
     const record = await Record.findByIdAndUpdate(req.params.id, req.body, {
       new: true
     });
+    if (!record) throw new createError.NotFound();
     res.status(200).send(record);
   } catch (e) {
     next(e);
