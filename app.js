@@ -21,7 +21,7 @@ const app = express();
 app.use(logger("dev"));
 
 /**CONNECT TO DB */
-mongoose.connect("mongodb://localhost:27017/bookshelf-api", {
+mongoose.connect("mongodb://localhost:27017/record-shop", {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true
@@ -64,7 +64,7 @@ app.use(function(req, res, next) {
 });
 
 app.use(function(err, req, res, next) {
-  res.send({
+  res.status(err.status || 500).send({
     error: {
       message: err.message
     }
