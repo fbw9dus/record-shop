@@ -11,7 +11,7 @@ The next step will be to create a feed function that will feed our database with
 **TODO**:
 
 1. Please set up mongoose in your server.
-2. Create a data schema and a model for our records.
+2. Create a data schema and a model for our records, users and orders.
 3. Write a seed script using faker that will run everytime we start our project. If the database is empty, it will feed it some records, orders and users.
 
 ## Task 03 - Routing and error handling
