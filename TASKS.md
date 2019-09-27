@@ -2,6 +2,16 @@
 
 This file lists the changes that need to be made in each stage. It is ordered in reverse chronological order, meaning that the last changes made will always be on top of the file, so that readers will not have to scroll all the way down with each task added.
 
+## Task 05 - Mongoose and Controllers
+
+In this task will update our controllers to start communicating with our database. `Lowdb` is no longer needed, so we will get rid of it's structure. We will dive into Mongoose API and introduce methods that establish communication with our database. Using Mongoose we will read data from the database, insert new records and manipulate already stored data. We will also introduce `Robo 3T`, a MongoDB GUI that will help us follow what is happening in our database whenever we update something.
+
+**TODO**:
+
+1. Please update your record's controller using Mongoose.
+2. Make sure all API endpoints for `records` work as they should.
+3. Repeat the process for your `users` and `orders` controllers.
+
 ## Task 04 - Mongoose and Seeding
 
 In this task we will introduce Mongoose. Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js. It manages relationships between data, provides schema validation, and is used to translate between objects in code and the representation of those objects in MongoDB.
