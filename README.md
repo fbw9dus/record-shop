@@ -4,9 +4,8 @@ In dieser Repo sind eine Reihe von Workshops dazu, wie man eine RESTfull API mac
 
 ## So gehts
 
-Diese Repo hat mehrere Branches für die Schritte beim Programmieren der app. Bei jedem Schritt werden einige Änderungen an dem Projekt gemacht, die Änderungen werden der [`CHANGELOG.md`](CHANGELOG.md)-Datei eingetragen, damit man verstehen kann, was gemacht wurde.
+Dieser Repo werden nach und nach mehrere Branches für die Schritte beim Programmieren der app hinzugefügt. Bei jedem Schritt werden einige Änderungen an dem Projekt gemacht, die Änderungen werden in der [`CHANGELOG.md`](CHANGELOG.md)-Datei eingetragen, damit man verstehen kann, was gemacht wurde.
 
 Wenn du nachschauen willst, was in bestimmten Schritten der Programmierung der app gemacht wurde, mach einen Checkout vom entsprechenden Branch und lies im changelog nach.
 
-
-In addition, branches with the prefix task/ describe the task that needs to be achieved in that change. The tasks are all listed in the TASKS.md file. If you want to start doing things yourself, simply checkout the task branch and make the change. To begin from the start, checkout the task/01-mock-database-and-controllers branch.
+Das was im Aktuellen Schritt bzw. im aktuellen Branch an der app programmiert werden muss, steht in `TASKS.md`. Du musst also den Branch, an dem du arbeiten willst auschecken um die Aufgabe zu sehen und sie machen zu können. Die erste Aufgabe ist im Branch task/01-mock-database-and-controllers Mach einen checkout davon, um anzufangen.
