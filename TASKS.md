@@ -4,20 +4,19 @@ In dieser Datei stehen die Dinge, die bei jedem Schritt der App-Entwicklung prog
 
 ## Aufgabe 01 - Pseudo-Datenbank und Controller
 
-Most applications made for the web have to do with some sort of data manipulation. In order to be able to manipulate our data we have to do two things first:
+Bei den meisten Web-Applikationen werden Daten manipuliert. Damit unsere Daten manipuliert werden können, müssen zuerst zwei Dinge gemacht werden:
 
-    - We need to define the endpoints of our app that our users will use to send 
-      different kinds of requests (GET, POST, DELETE, etc).
-    - We have to define how do we want our data to look like and of course store them somewhere.
+    - Wir müssen die Endpunkte unserer app definieren, über die Nutzer unterschiedliche Anfragen machen können (GET, POST, DELETE, etc).
+    - Wir müssen festlegen, wie die Daten strukturiert sein sollen und wir müssen sie irgendwo speichern.
 
-**Story**: Our client is a record shop owner who wants to have a list of products in the main page of their shop. They know that they want to display the title, the artist, the year, the cover image and the price for each record they have available. However, the client still doesn't have a full list of all their products. He would also like to be able to add new records to his collection.
+**Konzept**: Unser Kunde ist der Besitzer eines Musikladens, der eine Produktliste auf der Startseite seines Shops haben will. Er will, dass für jeden Artikel im Sortiment, der Titel, der Künstler, das Jahr, das Album-Bild und der Preis angezeigt werden soll. Der Kunde hat aber bisher keine Liste aller Produkte. Er hätte auch gerne die Möglichkeit, neue Artikel zum Sortiment hinzuzufügen.
 
-**TODO**:
+**Aufgaben**:
 
-1. Please create two endpoints(routes) for the shop owner
+1. Mach zwei Endpunkte(Routen) für den Shop-Besitzer
 
-   - `api/records` -> a `GET` that will return all records of the store
-   - `api/records` -> a `POST` that will add a new record to the record collection
+   - `api/records` -> ein `GET`-Endpunkt, der alle Artikel des Shops zurückgibt
+   - `api/records` -> ein `POST`-Endpunkt, der einen neuen Artikel zur Liste hinzufügt
 
    For now you can just return a string from the above endpoints, just to make sure everything works. 
 
