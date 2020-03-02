@@ -20,7 +20,6 @@ Bei den meisten Web-Applikationen werden Daten manipuliert. Damit unsere Daten m
 
    Fürden Anfang können diese Endpunkte einfach Strings zurückgeben, damit man sieht, dass sie funktionieren.
 
-2. Using `lowdb` set up a mock database for our records. It can be empty or it can contain already some fake data. Update the routes above so that they work just like they should.
 2. Richte eine Pseudo-Datenbank für unsere Artikel ein. Dafür kannst du [lowdb](https://github.com/typicode/lowdb) oder [notarealdb](https://github.com/mirkonasato/notarealdb) benutzen.
 
    - `api/records` -> Soll alle Artikel zurückgeben, die in der Pseudo-Datenbank sind.
