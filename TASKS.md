@@ -18,9 +18,10 @@ Bei den meisten Web-Applikationen werden Daten manipuliert. Damit unsere Daten m
    - `api/records` -> ein `GET`-Endpunkt, der alle Artikel des Shops zurückgibt
    - `api/records` -> ein `POST`-Endpunkt, der einen neuen Artikel zur Liste hinzufügt
 
-   For now you can just return a string from the above endpoints, just to make sure everything works. 
+   Fürden Anfang können diese Endpunkte einfach Strings zurückgeben, damit man sieht, dass sie funktionieren.
 
 2. Using `lowdb` set up a mock database for our records. It can be empty or it can contain already some fake data. Update the routes above so that they work just like they should.
+2. Richte eine Pseudo-Datenbank für unsere Artikel ein. Dafür kannst du [lowdb](https://github.com/typicode/lowdb) oder [notarealdb](https://github.com/mirkonasato/notarealdb) benutzen.
 
-   - `api/records` -> should return all the records that are in our lowdb database
-   - `api/records` -> should add a new record to our lowdb database
+   - `api/records` -> Soll alle Artikel zurückgeben, die in der Pseudo-Datenbank sind.
+   - `api/records` -> Soll einen neuen Artikel in die Pseudo-Datenbank einfügen.
