@@ -1,15 +1,15 @@
-# The Tutorial Changelog
+# Changelog - Änderungsverlauf deines Projekts
 
-This changelog is ordered in reverse chronological order, meaning that the last changes made will always be on top of the file, so that readers will not have to scroll all the way down with each change.
+Dieser Changelog ist in umgekehrter Reihenfolge sortiert, die neuesten Änderungen stehen also oben und die älteren darunter, so dass man sofort sieht, was als nächstes gemacht werden muss.
 
-## Stage 0: Boilerplate
+## Stage 0(master): Boilerplate
 
-This branch contains a boilerplate for almost every express server you are going to create.  
-This boilerplate consists of:
+In diesem Branch ist ein Grundaufbau, der so für fast alle Express-Server gebraucht wird, die du machen wirst.
+Der Grundaufbau besteht aus:
 
-- Files create by [`npx express-generator`](https://expressjs.com/en/starter/generator.html), using the `--no-view` and `--git` flags, slightly modified and modernised.
+- Dateien, die vom [`npx express-generator`](https://expressjs.com/en/starter/generator.html) mit den Optionen `--no-view` und `--git` erzeugt wurden, etwas abgeändert und aktualisiert.
 
-### Changes made to `express-generator` files:
+### Änderungen an den `express-generator`-Dateien:
 
-- `routes/index.js` and `routes/users.js` have been updated to use `const`
-- `app.js` was also updated to use `const`. In addition, comments were added to seperate the file to smaller more easily readable chunks.
+- `routes/index.js` und `routes/users.js` nutzen `const`
+- `app.js` nutzt `const`. Es wurden Kommentare hinzugefügt um den Code besser lesbar zu machen.
