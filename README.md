@@ -1,11 +1,11 @@
-# Data Server - Record Shop Workshops
+# Data Server - Musik-Laden Workshops
 
-This repo hosts a series of workshops on creating a traditional RESTfull API using Node, Express and Mongoose. The workshops are following DCI's curriculum structure. A basic reference on how we move in our project is this series of tutorials by [Academind](https://www.youtube.com/playlist?list=PL55RiY5tL51q4D-B63KBnygU6opNPFk_q). Please bookmark the video playlist for future reference. :crystal_ball:
+In dieser Repo sind eine Reihe von Workshops dazu, wie man eine RESTfull API macht, mit Hilfe von Node, Express und Mongoose. Die Worhshops richten sich nach unserem Lehrplan. Eine ungefähre Übersicht, wie das Projekt aufgebaut wird, findest du in dieser YouTube-Playlist: [Academind](https://www.youtube.com/playlist?list=PL55RiY5tL51q4D-B63KBnygU6opNPFk_q) :crystal_ball:
 
-## The way it works
+## So gehts
 
-This repo has several branches with several stages of the development of the final app. For each stage, a list of changes will be added to the [`CHANGELOG.md`](CHANGELOG.md) file, to explain the changes made.
+Dieser Repo werden nach und nach mehrere Branches für die Schritte beim Programmieren der app hinzugefügt. Bei jedem Schritt werden einige Änderungen an dem Projekt gemacht, die Änderungen werden in der [`CHANGELOG.md`](CHANGELOG.md)-Datei eingetragen, damit man verstehen kann, was gemacht wurde.
 
-If you need a reminder on how this app changed through each of the workshops, simply checkout the branch for the phase you are interested in, and read the changelog.
+Wenn du nachschauen willst, was in bestimmten Schritten der Programmierung der app gemacht wurde, mach einen Checkout vom entsprechenden Branch und lies im changelog nach.
 
-In addition, branches with the prefix task/ describe the task that needs to be achieved in that change. The tasks are all listed in the TASKS.md file. If you want to start doing things yourself, simply checkout the task branch and make the change. To begin from the start, checkout the task/01-mock-database-and-controllers branch.
+Das was im Aktuellen Schritt bzw. im aktuellen Branch an der app programmiert werden muss, steht in `TASKS.md`. Du musst also den Branch, an dem du arbeiten willst auschecken um die Aufgabe zu sehen und sie machen zu können. Die erste Aufgabe ist im Branch task/01-mock-database-and-controllers Mach einen checkout davon, um anzufangen.
