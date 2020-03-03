@@ -3,8 +3,6 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
 
 /** ROUTERS */
 const indexRouter = require('./routes/index');
@@ -16,12 +14,6 @@ const app = express();
 
 /** LOGGING */
 app.use(logger('dev'));
-
-
-/** SETTING UP LOWDB */
-const adapter = new FileSync('data/db.json');
-const db = low(adapter);
-db.defaults({ records:[] }).write();
 
 
 /** REQUEST PARSERS */
