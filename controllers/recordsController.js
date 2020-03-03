@@ -1,21 +1,18 @@
-const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
-const adapter = new FileSync('data/db.json');
-const db = low(adapter);
+// Pseudo-DB-Bibliothek importieren
+var { DataStore } = require('notarealdb')
+// Pseudo-DB erstellen
+var store = new DataStore('./data')
+// Collection für Shop-Artikel
+var records = store.collection('records')
 
-
+// Funktion um Liste der Artikel zurückzugeben
 exports.getRecords = (req, res, next) => {
-    const records = db.get('records').value()
-    res.status(200).send(records);
+    res.status(200).send(records.list());
 }
 
-
+// Funktion um neuen Aretikel hinzuzufügen
 exports.addRecord = (req, res, next) => {
     const record = req.body;
-    db.get('records').push(record)
-        .last()
-        .assign({ id: Date.now().toString() })
-        .write()
-
+    records.create(record)
     res.status(200).send(record);
 }
