@@ -2,7 +2,7 @@
 
 In dieser Datei stehen die Dinge, die bei jedem Schritt der App-Entwicklung programmiert werden müssen. Die Augraben werden in umgekehrter Reihenfolge aufgelistet, also die neuesten Aufgaben ganz oben und die, die schon erledigt sind, darunter.
 
-## Aufgabe 04 - Mongoose and Seeding
+## Aufgabe 04 - Mongoose und Seeding
 
 In diesem Schritt des Projekts führen wir Mongoose ein. Mongoose ist eine Object Data Modeling (ODM)-Bibliothek für MongoDB und Node.js. Sie regelt Verknüpfungen zwischen Daten, ermöglicht Validierung und macht die Umwandlung zwischen Objekten im Code und deren Entsprechung in MongoDB.
 Wir werden eigene Models und Schema erstellen und genau definieren, wie record-, user- und order-Objekte aufgebaut sein sollen.
