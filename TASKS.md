@@ -11,7 +11,7 @@ Der nächste Schritt wird sein, eine Feed-Funktion zu schreiben, die Beispiel-Da
 **Aufgaben**:
 
 1. Installiere Mongoose in deinem Projekt.
-2. Schreib ein Schema und ein Model für die Shop-Artikel(records), Kunden(users) und Bestellungen(orders).
+2. Schreib Schemas und Models für die Shop-Artikel(records), Kunden(users) und Bestellungen(orders).
 3. Schreib ein Seed-Skript, das faker nutzt. Das Skript soll jedes mal am Anfang laufen, wenn dein Server gestartet wird. Es soll prüfen ob die Datenbank leer ist und in dem Fall Beispieldaten für records, users und orders zum Testen in die Datenbank schreiben.
 
 ## Aufgabe 03 - Routing und error handling
