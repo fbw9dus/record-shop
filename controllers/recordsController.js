@@ -1,46 +1,34 @@
-const low = require("lowdb");
-const FileSync = require("lowdb/adapters/FileSync");
-const adapter = new FileSync("data/db.json");
-const db = low(adapter);
-
 exports.getRecords = (req, res, next) => {
-  const records = db.get("records").value();
+  // Schreib hier code um alle records aus der records-Collection zu holen
+
   res.status(200).send(records);
 };
 
 exports.getRecord = (req, res, next) => {
   const { id } = req.params;
-  const record = db.get("records").find({ id });
+  // Schreib hier code um das record mit der id aus params aus der records-Collection zu holen
+
   res.status(200).send(record);
 };
 
 exports.deleteRecord = (req, res, next) => {
   const { id } = req.params;
-  const record = db
-    .get("records")
-    .remove({ id })
-    .write();
+  // Schreib hier code um das record mit der id aus params aus der records-Collection zu löschen
+
   res.status(200).send(record);
 };
 
 exports.updateRecord = (req, res, next) => {
   const { id } = req.params;
   const dt = req.body;
-  const record = db
-    .get("records")
-    .find({ id })
-    .assign(dt)
-    .write();
+  // Schreib hier code um das record mit der id aus params in der records-Collection mit den Daten aus req.body zu aktualisieren
+
   res.status(200).send(record);
 };
 
 exports.addRecord = (req, res, next) => {
   const record = req.body;
-  db.get("records")
-    .push(record)
-    .last()
-    .assign({ id: Date.now().toString() })
-    .write();
+  // Schreib hier code um die Daten des neuen record aus req.body in der records-Collection zu speichern
 
   res.status(200).send(record);
 };

@@ -1,46 +1,34 @@
-const low = require("lowdb");
-const FileSync = require("lowdb/adapters/FileSync");
-const adapter = new FileSync("data/db.json");
-const db = low(adapter);
-
 exports.getOrders = (req, res, next) => {
-  const orders = db.get("orders").value();
+  // Schreib hier code um alle Bestellungen aus der orders-Collection zu holen
+
   res.status(200).send(orders);
 };
 
 exports.getOrder = (req, res, next) => {
   const { id } = req.params;
-  const order = db.get("orders").find({ id });
+  // Schreib hier code um die Bestellung mit der id aus params aus der orders-Collection zu holen
+
   res.status(200).send(order);
 };
 
 exports.deleteOrder = (req, res, next) => {
   const { id } = req.params;
-  const order = db
-    .get("orders")
-    .remove({ id })
-    .write();
+  // Schreib hier code um die Bestellung mit der id aus params aus der orders-Collection zu löschen
+
   res.status(200).send(order);
 };
 
 exports.updateOrder = (req, res, next) => {
   const { id } = req.params;
   const dt = req.body;
-  const order = db
-    .get("orders")
-    .find({ id })
-    .assign(dt)
-    .write();
+  // Schreib hier code um die Bestellung mit der id aus params in der orders-Collection mit den Daten aus req.body zu aktualisieren
+
   res.status(200).send(order);
 };
 
 exports.addOrder = (req, res, next) => {
   const order = req.body;
-  db.get("orders")
-    .push(order)
-    .last()
-    .assign({ id: Date.now().toString() })
-    .write();
+  // Schreib hier code um die Daten der neuen Bestellungen aus req.body in der orders-Collection zu speichern
 
   res.status(200).send(order);
 };
