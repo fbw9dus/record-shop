@@ -87,7 +87,7 @@ describe('Records Endpoints', () => {
             .post(`/records`)
             .send(fakeRecord)
         const checkRecord = await Record.findOne({'title': fakeRecord.title})
-        expect(checkRecord).toHaveProperty(['email'])
+        expect(checkRecord).toHaveProperty(['title'])
         done()
     })
 })
