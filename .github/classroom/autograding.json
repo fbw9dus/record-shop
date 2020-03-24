@@ -20,6 +20,13 @@
       "run": "npm test -- __tests__/endpoints-orders.js",
       "timeout": 10,
       "points": 4
+    },
+    {
+      "name": "validation",
+      "setup": "npm install",
+      "run": "npm test -- __tests__/validation.js",
+      "timeout": 10,
+      "points": 4
     }
   ]
 }
