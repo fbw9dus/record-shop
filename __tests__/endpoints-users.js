@@ -9,7 +9,7 @@ let server;
 
 describe('Users Endpoints', () => {
     test('should get list of all users', async done =>{
-        await Record.create({
+        await User.create({
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
             email: faker.internet.email(),
