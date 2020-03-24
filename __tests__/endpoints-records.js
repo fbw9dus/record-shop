@@ -93,7 +93,6 @@ describe('Records Endpoints', () => {
 })
 
 beforeAll(async (done) => {
-    exec('npm run seed')
     server = app.listen(3000, () => {
         global.agent = request.agent(server);
         done();
