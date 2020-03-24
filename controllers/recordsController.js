@@ -1,6 +1,8 @@
-exports.getRecords = (req, res, next) => {
-  // Schreib hier code um alle records aus der records-Collection zu holen
+const Record = require('../models/Record')
 
+exports.getRecords = async (req, res, next) => {
+  // Schreib hier code um alle records aus der records-Collection zu holen
+  const records = await Record.find()
   res.status(200).send(records);
 };
 
