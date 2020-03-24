@@ -8,7 +8,7 @@ const faker = require('faker')
 let server;
 
 describe('Users Endpoints', () => {
-    /*test('should get list of all users', async done =>{
+    test('should get list of all users', async done =>{
         const res = await request(app).get('/users')
         expect(res.statusCode).toBe(200)
         expect(Array.isArray(res.body)).toBeTruthy()
@@ -63,7 +63,7 @@ describe('Users Endpoints', () => {
             .send({email: fakeEmail})
         expect(res.body.email).toBe(fakeEmail)
         done()
-    })*/
+    })
 
     test('should create new user', async done => {
         const fakeUser = {
