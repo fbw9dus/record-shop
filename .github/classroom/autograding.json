@@ -3,7 +3,7 @@
     {
       "name": "records all",
       "setup": "npm install",
-      "run": "npm test -- __tests__/endpoints-records.js",
+      "run": "npm test -- __tests__/endpoints-users.js",
       "timeout": 10,
       "points": 4
     }
