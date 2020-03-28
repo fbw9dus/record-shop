@@ -10,9 +10,9 @@ Bei Validierung stellen wir sicher, dass die Daten das richtige Format haben. Be
 **Aufgaben**
 
 1. Installiere `express-validator`.
-2. Validiere die Daten für das User-Schema.
-3. Nachdem die Daten validiert wurden, bereinige sie auch.
-4. Mach zum Schluss eine Middleware für die Validierung, durch die alle deine Validatoren laufen werden.
+2. Validiere die Daten für das User-Schema. Es soll geprüft werden, ob die Email valide ist, das Passwort mindestens zehn zeichen hat und der Vorname nicht leer ist.
+3. Richte nach der Validierung, auch eine Bereinigung der Daten ein. Bei `email` sollen die Email-spezifischen Bereinigungen von `express-validator` angewendet werden. Bei `firstName` sollen überschüssige Leerzeichen am Anfang und am Ende entfert werden.
+4. Schreib eine Middleware in `middleware/validator.js`, die das Ergebnis einer Validierung (validationResult) annehmen und eine Fehlermeldung als Antwort schicken kann. Die Middleware-Funktion soll als `validateInputs` exportiert werden. Benutze die Middleware in der `post`-Route des `users`-Routers.
 
 ## Aufgabe 05 - Mongoose und Controller
 

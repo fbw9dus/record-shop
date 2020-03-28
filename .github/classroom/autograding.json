@@ -27,6 +27,20 @@
       "run": "npm test -- __tests__/validation.js",
       "timeout": 10,
       "points": 4
+    },
+    {
+      "name": "validation middleware",
+      "setup": "npm install",
+      "run": "npm test -- __tests__/validation-middleware.js",
+      "timeout": 10,
+      "points": 3
+    },
+    {
+      "name": "sanitization",
+      "setup": "npm install",
+      "run": "npm test -- __tests__/sanitization.js",
+      "timeout": 10,
+      "points": 3
     }
   ]
 }
