@@ -20,10 +20,10 @@ describe('Sanitization', () => {
             password: faker.internet.password()
         }
         
-        await request(app)
+        const res = await request(app)
             .post(`/users`)
             .send(unsanitizedData)
-        const checkUser = await User.findOne({lastName: unsanitizedData.lastName})
+        const checkUser = await User.findById(res.body._id)
         expect(checkUser.email).toBe(sanitizedEmail)
         done()
     })
@@ -34,13 +34,13 @@ describe('Sanitization', () => {
         const unsanitizedData = {
             firstName: unsanitizedFirstName,
             lastName: faker.name.lastName(),
-            email: faker.internet.email,
+            email: faker.internet.email(),
             password: faker.internet.password()
         }
-        await request(app)
+        const res = await request(app)
             .post(`/users`)
             .send(unsanitizedData)
-        const checkUser = await User.findOne({lastName: unsanitizedData.lastName})
+        const checkUser = await User.findById(res.body._id)
         expect(checkUser.firstName).toBe(sanitizedFirstName)
         done()
     })
