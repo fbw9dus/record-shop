@@ -13,6 +13,7 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-validator": "^6.4.0",
     "faker": "^4.1.0",
     "http-errors": "^1.7.3",
     "lowdb": "^1.0.0",

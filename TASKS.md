@@ -2,11 +2,23 @@
 
 In dieser Datei stehen die Dinge, die bei jedem Schritt der App-Entwicklung programmiert werden müssen. Die Augraben werden in umgekehrter Reihenfolge aufgelistet, also die neuesten Aufgaben ganz oben und die, die schon erledigt sind, darunter.
 
+## Aufgabe 06 - Validation und Sanitization
+
+In diesem Schritt werden wir Daten-Validierung hinzufügen. Wie können wir feststellen, dass das Format der E-Mail-Adresse, die der Nutzer eingegeben hat, richtig ist? Wir werden mit `express-validator` die Daten überprüfen, bevor wir sie in die Datenbank speichern. Wenn etwas nicht valide ist, schicken wir eine detaillierte Fehlermeldung an den Benutzer. Nach der Validierung, werden wir die Daten bereinigen(Satitization), und zwar auch mit `express-validator`.
+Bei Validierung stellen wir sicher, dass die Daten das richtige Format haben. Bei Bereinigung(Sanitization) geht es darum, Störfaktoren aus den Daten zu entfernen, wie unnötige Leerzeichen, falsche Groß- und Kleinschreibung usw.
+
+**Aufgaben**
+
+1. Installiere `express-validator`.
+2. Validiere die Daten für das User-Schema. Es soll geprüft werden, ob die Email valide ist, das Passwort mindestens zehn zeichen hat und der Vorname nicht leer ist.
+3. Richte nach der Validierung, auch eine Bereinigung der Daten ein. Bei `email` sollen die Email-spezifischen Bereinigungen von `express-validator` angewendet werden. Bei `firstName` sollen überschüssige Leerzeichen am Anfang und am Ende entfert werden.
+4. Schreib eine Middleware in `middleware/validator.js`, die das Ergebnis einer Validierung (validationResult) annehmen und eine Fehlermeldung als Antwort schicken kann. Die Middleware-Funktion soll als `validateInputs` exportiert werden. Benutze die Middleware in der `post`-Route des `users`-Routers.
+
 ## Aufgabe 05 - Mongoose und Controller
 
 In diesem Schritt werden wir die Controller in der App so anpassen, dass sie mit der Datenbank kommunizieren. Wir brauchen die Pseudo-Datenbank (`notarealdb`) nicht mehr, deshalb können wir sie entfernen. Wir werden uns mit der Mongoose-API beschäftigen und über die Methoden lernen, über die man mit der Datenbank kommuniziert. Wir werden mit Mongoose Daten aus der Datenbank holen, Daten speichern und schon gespeicherte Daten aktualisieren.
 
-**TODO**:
+**Aufgaben**:
 
 1. Schreib die Controller so um, dass sie Mongoose benutzen um die Daten mit der Datenbank zu synchronisieren.
 2. Alle API-Endpunkte für `records` sollen funktionieren wie gedacht.

@@ -87,13 +87,12 @@ describe('Records Endpoints', () => {
             .post(`/records`)
             .send(fakeRecord)
         const checkRecord = await Record.findOne({'title': fakeRecord.title})
-        expect(checkRecord).toHaveProperty(['email'])
+        expect(checkRecord).toHaveProperty(['title'])
         done()
     })
 })
 
 beforeAll(async (done) => {
-    exec('npm run seed')
     server = app.listen(3000, () => {
         global.agent = request.agent(server);
         done();

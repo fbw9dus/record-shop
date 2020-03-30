@@ -30,8 +30,6 @@ mongoose.connection.on("open", function() {
   console.log("Database connection established...");
 });
 
-
-
 /** REQUEST PARSERS */
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
