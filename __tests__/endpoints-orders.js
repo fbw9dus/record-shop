@@ -2,6 +2,7 @@ const app = require('../app')
 const request = require('supertest')
 const mongoose = require('mongoose')
 const Order = require('../models/Order')
+const Record = require('../models/Record')
 const {exec} = require('child_process')
 const faker = require('faker')
 
@@ -9,9 +10,16 @@ let server;
 
 describe('Orders Endpoints', () => {
     test('should get list of all orders', async done =>{
+        const testRecord = await Record.create({
+            title: 'best of',
+            artist: 'George Michael',
+            year: 2001,
+            img: 'img/folder',
+            price: 6
+          })
         await Order.create({
             quantity: 1,
-            record: 123
+            record: testRecord.id
           })
         const res = await request(app).get('/orders')
         expect(res.statusCode).toBe(200)
