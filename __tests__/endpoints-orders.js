@@ -29,9 +29,16 @@ describe('Orders Endpoints', () => {
     })
 
     test('should get specific order', async done =>{
+        const testRecord = await Record.create({
+            title: 'best of',
+            artist: 'George Michael',
+            year: 2001,
+            img: 'img/folder',
+            price: 6
+          })
         const fakeOrder = new Order({
             quantity: 2,
-            record: 1234
+            record: testRecord.id
           })
         await fakeOrder.save()
         const compOrder = fakeOrder.toObject()
@@ -43,9 +50,16 @@ describe('Orders Endpoints', () => {
     })
 
     test('should delete Order', async done =>{
+        const testRecord = await Record.create({
+            title: 'best of',
+            artist: 'George Michael',
+            year: 2001,
+            img: 'img/folder',
+            price: 6
+          })
         const fakeOrder = new Order({
             quantity: 1,
-            record: 12345
+            record: testRecord.id
           })
         await fakeOrder.save()
         let checkOrder = await Order.findById(fakeOrder.id)
@@ -58,9 +72,16 @@ describe('Orders Endpoints', () => {
     })
 
     test('should update Order', async done => {
+        const testRecord = await Record.create({
+            title: 'best of',
+            artist: 'George Michael',
+            year: 2001,
+            img: 'img/folder',
+            price: 6
+          })
         const fakeOrder = new Order({
             quantity: 2,
-            record: 123456
+            record: testRecord.id
           })
         await fakeOrder.save()
         const fakeQuantity = 3
@@ -72,9 +93,16 @@ describe('Orders Endpoints', () => {
     })
 
     test('should create new order', async done => {
+        const testRecord = await Record.create({
+            title: 'best of',
+            artist: 'George Michael',
+            year: 2001,
+            img: 'img/folder',
+            price: 6
+          })
         const fakeOrder = {
             quantity: 1,
-            record: 1234567
+            record: testRecord.id
           }
         const res = await request(app)
             .post(`/orders`)
