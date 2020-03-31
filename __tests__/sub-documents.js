@@ -15,8 +15,8 @@ describe('Sub Documents', () => {
             email: faker.internet.email(),
             password: faker.internet.password(),
             address: {
-                street: faker.address.streetAddress,
-                city: faker.address.city
+                street: faker.address.streetAddress(),
+                city: faker.address.city()
             }
         }
         const res = await request(app)

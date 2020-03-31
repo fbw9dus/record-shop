@@ -18,7 +18,8 @@ const UserSchema = new Schema(
     password: {
       type: String,
       required: true
-    }
+    },
+    address: AddressSchema
   },
   {
     toObject: {
