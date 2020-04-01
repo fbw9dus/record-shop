@@ -1,10 +1,18 @@
-const User = require('../models/User');
-const {validationResult} = require('express-validator')
 
+const User = require('../models/User');
+const { validationResult } = require('express-validator');
 
 exports.getUsers = async (req, res, next) => {
-  const users    = await User.find();
-
+  let { recordsPerPage, pageNumber } = req.query;
+  recordsPerPage = parseInt(recordsPerPage);
+  pageNumber     = parseInt(pageNumber);
+  const skipRecords = recordsPerPage * pageNumber;
+  const users = await User.find(
+    null, null, {
+      limit: recordsPerPage,
+      skip:  skipRecords
+    }
+  );
   res.status(200).send(users);
 };
 
