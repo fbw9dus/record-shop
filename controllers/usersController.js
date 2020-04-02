@@ -3,18 +3,35 @@ const User = require('../models/User');
 const { validationResult } = require('express-validator');
 
 exports.getUsers = async (req, res, next) => {
-  let { recordsPerPage, pageNumber } = req.query;
+
+  let {
+    recordsPerPage=4,
+    pageNumber=0,
+    search='',
+    sortField='id',
+    sortOrder=1
+  } = req.query;
+
   recordsPerPage = parseInt(recordsPerPage);
   pageNumber     = parseInt(pageNumber);
+
   const skipRecords = Math.max(0,recordsPerPage * pageNumber);
+
   // anzahl der dokumente abrufen
   const numberOfRecords = await User.estimatedDocumentCount();
+
   // liste der dokumente abrufen
   if ( recordsPerPage === -1 ) recordsPerPage = undefined;
+
   const users = await User.find(
-    null, null, {
+    {
+      firstName: {
+        $regex: search
+      }
+    }, null, {
       limit: recordsPerPage,
-      skip:  skipRecords
+      skip:  skipRecords,
+      sort:  { [sortField]: sortOrder }
     }
   );
   // liste und metadaten senden
