@@ -6,11 +6,11 @@ exports.getUsers = async (req, res, next) => {
   let { recordsPerPage, pageNumber } = req.query;
   recordsPerPage = parseInt(recordsPerPage);
   pageNumber     = parseInt(pageNumber);
-  const skipRecords = recordsPerPage * pageNumber;
+  const skipRecords = Math.max(0,recordsPerPage * pageNumber);
   // anzahl der dokumente abrufen
-  const numberOfRecords =
-    await User.estimatedDocumentCount();
+  const numberOfRecords = await User.estimatedDocumentCount();
   // liste der dokumente abrufen
+  if ( recordsPerPage === -1 ) recordsPerPage = undefined;
   const users = await User.find(
     null, null, {
       limit: recordsPerPage,
