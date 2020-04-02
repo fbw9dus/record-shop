@@ -1,10 +1,8 @@
-const Record = require ("../models/Record");
 
-exports.getRecords = async (req, res, next) => {
-  const records = await Record.find()
-  
-  res.status(200).send(records);
-};
+const Record = require ("../models/Record");
+const { getPaginatedList } = require('./abstractControllers');
+
+exports.getRecords = getPaginatedList(Record);
 
 exports.getRecord = async (req, res, next) => {
   const { id } = req.params;
@@ -32,6 +30,6 @@ exports.addRecord = async (req, res, next) => {
   const records = req.body;
   const record  = new Record(records);
   await record.save();
-  
+
   res.status(200).send(record);
 };

@@ -1,45 +1,9 @@
 
 const User = require('../models/User');
+const { getPaginatedList } = require('./abstractControllers');
 const { validationResult } = require('express-validator');
 
-exports.getUsers = async (req, res, next) => {
-
-  let {
-    recordsPerPage=4,
-    pageNumber=0,
-    search='',
-    sortField='id',
-    sortOrder=1
-  } = req.query;
-
-  recordsPerPage = parseInt(recordsPerPage);
-  pageNumber     = parseInt(pageNumber);
-
-  const skipRecords = Math.max(0,recordsPerPage * pageNumber);
-
-  // anzahl der dokumente abrufen
-  const numberOfRecords = await User.estimatedDocumentCount();
-
-  // liste der dokumente abrufen
-  if ( recordsPerPage === -1 ) recordsPerPage = undefined;
-
-  const users = await User.find(
-    {
-      firstName: {
-        $regex: search
-      }
-    }, null, {
-      limit: recordsPerPage,
-      skip:  skipRecords,
-      sort:  { [sortField]: sortOrder }
-    }
-  );
-  // liste und metadaten senden
-  res.status(200).send({
-    list:  users,
-    count: numberOfRecords
-  });
-};
+exports.getUsers = getPaginatedList(User);
 
 exports.getUser  = async (req, res, next) => {
   const { id }   = req.params;
