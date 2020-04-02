@@ -7,13 +7,21 @@ exports.getUsers = async (req, res, next) => {
   recordsPerPage = parseInt(recordsPerPage);
   pageNumber     = parseInt(pageNumber);
   const skipRecords = recordsPerPage * pageNumber;
+  // anzahl der dokumente abrufen
+  const numberOfRecords =
+    await User.estimatedDocumentCount();
+  // liste der dokumente abrufen
   const users = await User.find(
     null, null, {
       limit: recordsPerPage,
       skip:  skipRecords
     }
   );
-  res.status(200).send(users);
+  // liste und metadaten senden
+  res.status(200).send({
+    list:  users,
+    count: numberOfRecords
+  });
 };
 
 exports.getUser  = async (req, res, next) => {
