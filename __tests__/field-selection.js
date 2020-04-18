@@ -147,7 +147,7 @@ describe('Select Data Fields', () => {
         expect(res.statusCode).toBe(200)
         expect(Array.isArray(res.body)).toBeTruthy()
         expect(res.body.length).toBeGreaterThan(0)
-        const sortedList = [res.body]
+        const sortedList = [...res.body]
         sortedList.sort(compare)
         expect(res.body).toEqual(sortedList)
 
