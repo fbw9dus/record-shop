@@ -128,6 +128,31 @@ describe('Select Data Fields', () => {
 
         done()
     })
+
+    test('Users should be sorted by last name', async done => {
+        function compare(a, b) {
+            const nameA = a.lastName.toUpperCase();
+            const nameB = b.lastName.toUpperCase();
+          
+            let comparison = 0;
+            if (nameA > nameB) {
+              comparison = 1;
+            } else if (nameA < nameB) {
+              comparison = -1;
+            }
+            return comparison;
+        }
+
+        const res = await request(app).get('/users')
+        expect(res.statusCode).toBe(200)
+        expect(Array.isArray(res.body)).toBeTruthy()
+        expect(res.body.length).toBeGreaterThan(0)
+        const sortedList = [res.body]
+        sortedList.sort(compare)
+        expect(res.body).toEqual(sortedList)
+
+        done()
+    })
 })
 
 beforeAll(async (done) => {

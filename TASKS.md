@@ -16,6 +16,7 @@ MongoDB ist eine NoSQL-Datenbank, das heißt, es ist nicht-relational - unter an
 4. Unter `/orders` und `/orders/:id` soll Record der Bestellungen ohne `price` und `year` ausgegeben werden.
 5. Ändere die Users-Controller so, dass das Passwort nie in der Antwort(response) mitgesendet wird.
 6. Unter `/users` sollen maximal 5 Benutzer ausgegeben werden.
+7. Die Benutzer sollen nach `lastName` sortiert ausgegeben werden.
 
 ## Aufgabe 06 - Validation und Sanitization
 
