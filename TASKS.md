@@ -2,6 +2,18 @@
 
 In dieser Datei stehen die Dinge, die bei jedem Schritt der App-Entwicklung programmiert werden müssen. Die Augraben werden in umgekehrter Reihenfolge aufgelistet, also die neuesten Aufgaben ganz oben und die, die schon erledigt sind, darunter.
 
+## Task 07 - Verknüpfungen
+
+MongoDB ist eine NoSQL-Datenbank, das heißt, es ist nicht-relational - unter anderem. Um Zusammenhänge zwischen Documents abzubilden, nutzen wir references mit IDs oder betten Sub-Dokumente direkt ein. In diesem Schritt, werden wir unseren Code anpassen um Verknüpfungen(relations) zwischen unseren Models herzustellen. Wie man sieht, hat eine Bestellung(Order) die ID einer Platte(record), aber wenn wir eine Bestellung aufrufen, sehen wir nur die ID aber keine Informationen über die Platte. Wir fügen eins-zu-eins- und eins-zu-mehrere-Verknüpfungen zu unseren Models hinzu und rufen die entsprechenden Daten ab, wenn nötig.
+
+**Konzept**: Unser Kunde - der Plattenladen - will die Adressen aller Kunden in einem bestimmten Format haben. Er will auch die Infos der Platte angezeigt bekommen, wenn eine Bestellung aufgerufen wird, so dass der Einkaufswagen gut aussieht.
+
+**Aufgaben**
+
+1. Mach ein neues Schema `address` mit den Feldern `street` und `city`.
+2. Verbinde das `address`-Schema mit unserem `user`-Schema (1-to-1).
+3. Mit Hilfe von `refs`, verknüpfe das `record`-Schema mit dem `order`-Schema (1-to-many).
+
 ## Aufgabe 06 - Validation und Sanitization
 
 In diesem Schritt werden wir Daten-Validierung hinzufügen. Wie können wir feststellen, dass das Format der E-Mail-Adresse, die der Nutzer eingegeben hat, richtig ist? Wir werden mit `express-validator` die Daten überprüfen, bevor wir sie in die Datenbank speichern. Wenn etwas nicht valide ist, schicken wir eine detaillierte Fehlermeldung an den Benutzer. Nach der Validierung, werden wir die Daten bereinigen(Satitization), und zwar auch mit `express-validator`.

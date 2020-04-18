@@ -2,6 +2,7 @@ const app = require('../app')
 const request = require('supertest')
 const mongoose = require('mongoose')
 const Order = require('../models/Order')
+const Record = require('../models/Record')
 const {exec} = require('child_process')
 const faker = require('faker')
 
@@ -9,9 +10,16 @@ let server;
 
 describe('Orders Endpoints', () => {
     test('should get list of all orders', async done =>{
+        const testRecord = await Record.create({
+            title: 'best of',
+            artist: 'George Michael',
+            year: 2001,
+            img: 'img/folder',
+            price: 6
+          })
         await Order.create({
             quantity: 1,
-            record: 123
+            record: testRecord.id
           })
         const res = await request(app).get('/orders')
         expect(res.statusCode).toBe(200)
@@ -21,23 +29,37 @@ describe('Orders Endpoints', () => {
     })
 
     test('should get specific order', async done =>{
+        const testRecord = await Record.create({
+            title: 'best of',
+            artist: 'George Michael',
+            year: 2001,
+            img: 'img/folder',
+            price: 6
+          })
         const fakeOrder = new Order({
             quantity: 2,
-            record: 1234
+            record: testRecord.id
           })
         await fakeOrder.save()
         const compOrder = fakeOrder.toObject()
         compOrder._id = compOrder._id.toString()
         const res = await request(app).get(`/orders/${fakeOrder.id}`)
         expect(res.statusCode).toBe(200)
-        expect(res.body).toEqual(compOrder)
+        expect(res.body._id).toBe(fakeOrder.id)
         done()
     })
 
     test('should delete Order', async done =>{
+        const testRecord = await Record.create({
+            title: 'best of',
+            artist: 'George Michael',
+            year: 2001,
+            img: 'img/folder',
+            price: 6
+          })
         const fakeOrder = new Order({
             quantity: 1,
-            record: 12345
+            record: testRecord.id
           })
         await fakeOrder.save()
         let checkOrder = await Order.findById(fakeOrder.id)
@@ -50,9 +72,16 @@ describe('Orders Endpoints', () => {
     })
 
     test('should update Order', async done => {
+        const testRecord = await Record.create({
+            title: 'best of',
+            artist: 'George Michael',
+            year: 2001,
+            img: 'img/folder',
+            price: 6
+          })
         const fakeOrder = new Order({
             quantity: 2,
-            record: 123456
+            record: testRecord.id
           })
         await fakeOrder.save()
         const fakeQuantity = 3
@@ -64,9 +93,16 @@ describe('Orders Endpoints', () => {
     })
 
     test('should create new order', async done => {
+        const testRecord = await Record.create({
+            title: 'best of',
+            artist: 'George Michael',
+            year: 2001,
+            img: 'img/folder',
+            price: 6
+          })
         const fakeOrder = {
             quantity: 1,
-            record: 1234567
+            record: testRecord.id
           }
         const res = await request(app)
             .post(`/orders`)

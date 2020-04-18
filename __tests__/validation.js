@@ -14,14 +14,14 @@ describe('Validation', () => {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
             email: wrongMail,
-            password: faker.internet.password()
+            password: faker.internet.password(10)
         }
         const res = await request(app)
             .post(`/users`)
             .send(wrongData1)
         expect(res.body).toHaveProperty(['errors'])
         // is saved in DB?
-        const checkUser = await User.findOne({'email': wrongMail})
+        const checkUser = await User.findById(res.body._id)
         expect(checkUser).toBeFalsy()
         done()
     })
@@ -29,15 +29,15 @@ describe('Validation', () => {
         ///// FIRSTNAME
         const wrongData2 = {
             lastName: faker.name.lastName(),
-            email: faker.internet.email,
-            password: faker.internet.password()
+            email: faker.internet.email(),
+            password: faker.internet.password(10)
         }
         const res = await request(app)
             .post(`/users`)
             .send(wrongData2)
         expect(res.body).toHaveProperty(['errors'])
         // is saved in DB?
-        const checkUser = await User.findOne(wrongData2)
+        const checkUser = await User.findById(res.body._id)
         expect(checkUser).toBeFalsy()
         done()
     })
@@ -47,7 +47,7 @@ describe('Validation', () => {
         const wrongData3 = {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
-            email: faker.internet.email,
+            email: faker.internet.email(),
             password: wrongPassword
         }
         const res = await request(app)
@@ -55,7 +55,7 @@ describe('Validation', () => {
             .send(wrongData3)
         expect(res.body).toHaveProperty(['errors'])
         // is saved in DB?
-        const checkUser = await User.findOne(wrongData3)
+        const checkUser = await User.findById(res.body._id)
         expect(checkUser).toBeFalsy()
         done()
     })
@@ -64,12 +64,12 @@ describe('Validation', () => {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
             email: faker.internet.email(),
-            password: faker.internet.password()
+            password: faker.internet.password(10)
         }
-        await request(app)
+        const res = await request(app)
             .post(`/users`)
             .send(fakeUser)
-        const checkUser = await User.findOne({'email': fakeUser.email})
+        const checkUser = await User.findById(res.body._id)
         expect(checkUser).toHaveProperty(['email'])
         done()
     })

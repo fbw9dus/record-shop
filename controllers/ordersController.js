@@ -1,6 +1,8 @@
-exports.getOrders = (req, res, next) => {
-  // Schreib hier code um alle Bestellungen aus der orders-Collection zu holen
+const Order = require('../models/Order')
 
+exports.getOrders = async (req, res, next) => {
+  // Schreib hier code um alle Bestellungen aus der orders-Collection zu holen
+  const orders = Order.find().populate("record")
   res.status(200).send(orders);
 };
 
@@ -26,9 +28,9 @@ exports.updateOrder = (req, res, next) => {
   res.status(200).send(order);
 };
 
-exports.addOrder = (req, res, next) => {
-  const order = req.body;
+exports.addOrder = async (req, res, next) => {
+  const data = req.body;
   // Schreib hier code um die Daten der neuen Bestellungen aus req.body in der orders-Collection zu speichern
-
+  const order = await Order.create(data)
   res.status(200).send(order);
 };

@@ -41,6 +41,20 @@
       "run": "npm test -- __tests__/sanitization.js",
       "timeout": 10,
       "points": 3
+    },
+    {
+      "name": "sub documents",
+      "setup": "npm install",
+      "run": "npm test -- __tests__/sub-documents.js",
+      "timeout": 10,
+      "points": 3
+    },
+    {
+      "name": "relations",
+      "setup": "npm install",
+      "run": "npm test -- __tests__/relations.js",
+      "timeout": 10,
+      "points": 5
     }
   ]
 }

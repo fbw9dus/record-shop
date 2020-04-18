@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const AddressSchema = require('./Address')
 
 const UserSchema = new Schema(
   {
@@ -18,7 +19,12 @@ const UserSchema = new Schema(
     password: {
       type: String,
       required: true
-    }
+    },
+    address: AddressSchema,
+    orders: [{
+      ref: "Order",
+      type: mongoose.Types.ObjectId
+    }]
   },
   {
     toObject: {
