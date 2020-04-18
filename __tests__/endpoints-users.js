@@ -31,10 +31,10 @@ describe('Users Endpoints', () => {
         })
         await fakeUser.save()
         const compUser = fakeUser.toObject()
-        compUser._id = compUser._id.toString()
+        delete compUser.password
         const res = await request(app).get(`/users/${fakeUser.id}`)
         expect(res.statusCode).toBe(200)
-        expect(res.body).toEqual(compUser)
+        expect(res.body).toEqual(expect.objectContaining(compUser))
         done()
     })
 

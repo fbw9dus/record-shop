@@ -13,6 +13,10 @@ MongoDB ist eine NoSQL-Datenbank, das heißt, es ist nicht-relational - unter an
 1. Mach ein neues Schema `address` mit den Feldern `street` und `city`.
 2. Verbinde das `address`-Schema mit unserem `user`-Schema (1-to-1).
 3. Mit Hilfe von `refs`, verknüpfe das `record`-Schema mit dem `order`-Schema (1-to-many).
+4. Unter `/orders` und `/orders/:id` soll Record der Bestellungen ohne `price` und `year` ausgegeben werden.
+5. Ändere die Users-Controller so, dass das Passwort nie in der Antwort(response) mitgesendet wird.
+6. Unter `/users` sollen maximal 5 Benutzer ausgegeben werden.
+7. Die Benutzer sollen nach `lastName` sortiert ausgegeben werden.
 
 ## Aufgabe 06 - Validation und Sanitization
 
