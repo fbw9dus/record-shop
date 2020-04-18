@@ -57,9 +57,11 @@ describe('Select Data Fields', () => {
         const res = await request(app).get(`/orders/${fakeOrder.id}`)
         expect(res.statusCode).toBe(200)
         expect(res.body).toEqual(
-            expect.not.objectContaining({ 
-                price: expect.anything(),
-                year: expect.anything()
+            expect.objectContaining({
+                record: expect.not.objectContaining({ 
+                    price: expect.anything(),
+                    year: expect.anything()
+                })
             })
         )
 
