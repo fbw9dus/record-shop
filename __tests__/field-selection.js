@@ -27,9 +27,11 @@ describe('Select Data Fields', () => {
         expect(res.body.length).toBeGreaterThan(0)
         expect(res.body).toEqual(
             expect.arrayContaining([
-                expect.not.objectContaining({ 
-                    price: expect.anything(),
-                    year: expect.anything()
+                expect.objectContaining({
+                    record: expect.not.objectContaining({ 
+                        price: expect.anything(),
+                        year: expect.anything()
+                    })
                 })
             ])
         )
