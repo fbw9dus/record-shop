@@ -2,7 +2,37 @@
 
 In dieser Datei stehen die Dinge, die bei jedem Schritt der App-Entwicklung programmiert werden müssen. Die Augraben werden in umgekehrter Reihenfolge aufgelistet, also die neuesten Aufgaben ganz oben und die, die schon erledigt sind, darunter.
 
-## Task 07 - Verknüpfungen
+## Aufgabe 08 - Authentifizierung
+
+Unsere App kann man schon gut benutzen aber sie ist bisher überhaupt nicht sicher. Jeder kann ein fremdes Nutzer-Konto löschen wenn er die ID kennt. Die Passwörter sind nicht verschlüsselt, so dass sie leicht in falsche Hände geraten können. Es wird nirgendwo geprüft, ob man eingeloggt ist.
+Wir werden mit JSON Web Tokens eine Berechtigungsprüfung für jede Anfrage programmieren, damit Daten nur von den Benutzern verwalten können, die sie erstellt haben. Wir werden außerdem Rollen für Benutzer hinzufügen. Wir brauchen eine Admin-Rolle und eine Kunde-Rolle und ihre Berechtigungen sollten so sein:
+
+**Admin Role**
+
+- Records
+  - POST/GET/PUT/DELETE.
+- Users
+  - POST/GET/PUT/DELETE.
+- Orders
+  - POST/GET/PUT/DELETE.
+
+**Client Role**
+
+- Records
+  - GET.
+- Users
+  - POST/GET/PUT/DELETE.
+- Orders
+  - POST/GET/PUT/DELETE.
+
+**Aufgaben**
+
+1. Wenn ein neuer User erstellt wird, soll für diesen ein Authentifizierungs-Token erzeugt werden.
+2. Schreib eine Middleware, die die Berechtigung für alle Endpunkte unserer App mit dem Token prüft.
+3. Wenn ein neuer User erstellt wird und beim Login, wandle das Passwort in einen Verschlüsselungs-Hash um.
+4. Schreib eine Middleware, die feststellt, ob ein Benutzer die Admin-Rolle hat.
+
+## Aufgabe 07 - Verknüpfungen
 
 MongoDB ist eine NoSQL-Datenbank, das heißt, es ist nicht-relational - unter anderem. Um Zusammenhänge zwischen Documents abzubilden, nutzen wir references mit IDs oder betten Sub-Dokumente direkt ein. In diesem Schritt, werden wir unseren Code anpassen um Verknüpfungen(relations) zwischen unseren Models herzustellen. Wie man sieht, hat eine Bestellung(Order) die ID einer Platte(record), aber wenn wir eine Bestellung aufrufen, sehen wir nur die ID aber keine Informationen über die Platte. Wir fügen eins-zu-eins- und eins-zu-mehrere-Verknüpfungen zu unseren Models hinzu und rufen die entsprechenden Daten ab, wenn nötig.
 
