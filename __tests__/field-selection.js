@@ -56,6 +56,7 @@ describe('Select Data Fields', () => {
         compOrder._id = compOrder._id.toString()
         const res = await request(app).get(`/orders/${fakeOrder.id}`)
         expect(res.statusCode).toBe(200)
+        expect(res.body).toHaveProperty('record', expect.any(Object))
         expect(res.body).toEqual(
             expect.objectContaining({
                 record: expect.not.objectContaining({ 
