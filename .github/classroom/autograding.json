@@ -55,6 +55,13 @@
       "run": "npm test -- __tests__/relations.js",
       "timeout": 10,
       "points": 5
+    },
+    {
+      "name": "field selection",
+      "setup": "npm install",
+      "run": "npm test -- __tests__/field-selection.js",
+      "timeout": 10,
+      "points": 4
     }
   ]
 }
