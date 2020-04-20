@@ -27,10 +27,11 @@ Wir werden mit JSON Web Tokens eine Berechtigungsprüfung für jede Anfrage prog
 
 **Aufgaben**
 
-1. Wenn ein neuer User erstellt wird, soll für diesen ein Authentifizierungs-Token erzeugt werden.
-2. Schreib eine Middleware, die die Berechtigung für alle Endpunkte unserer App mit dem Token prüft.
-3. Wenn ein neuer User erstellt wird und beim Login, wandle das Passwort in einen Verschlüsselungs-Hash um.
-4. Schreib eine Middleware, die feststellt, ob ein Benutzer die Admin-Rolle hat.
+1. Füg im `users`-Router die POST-Route `/login` hinzu und mach einen Controller, in dem das gesendete Passwort geprüft wird.
+2. Wenn ein neuer User erstellt wird oder sich einloggt, soll für diesen ein Authentifizierungs-Token erzeugt werden.
+3. Schreib eine Middleware, die die Berechtigung für alle Endpunkte unserer App mit dem Token prüft.
+4. Wenn ein neuer User erstellt wird und beim Login, wandle das Passwort in einen Verschlüsselungs-Hash um.
+5. Schreib eine Middleware, die feststellt, ob ein Benutzer die Admin-Rolle hat.
 
 ## Aufgabe 07 - Verknüpfungen
 
