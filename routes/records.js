@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const auth = require("../middleware/authenticator")
 
 const {
   getRecords,
@@ -12,7 +13,7 @@ const {
 router
   .route("/")
   .get(getRecords)
-  .post(addRecord);
+  .post(auth, addRecord);
 
 router
   .route("/:id")

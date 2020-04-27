@@ -7,13 +7,17 @@ const {
   getUser,
   updateUser,
   deleteUser,
-  addUser
+  addUser,
+  loginUser
 } = require("../controllers/usersController");
 
 router
   .route("/")
   .get(getUsers)
   .post(validateInputs(userValidationRules), addUser);
+
+router.route("/login")
+  .post(loginUser)
 
 router
   .route("/:id")

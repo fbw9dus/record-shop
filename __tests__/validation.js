@@ -5,6 +5,7 @@ const User = require('../models/User')
 const faker = require('faker')
 
 let server;
+let token;
 
 describe('Validation', () => {
     test('should return error on incorrect email and not save in db', async done => {
@@ -14,10 +15,12 @@ describe('Validation', () => {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
             email: wrongMail,
-            password: faker.internet.password(10)
+            password: faker.internet.password(10),
+            role: 'User'
         }
         const res = await request(app)
             .post(`/users`)
+            .set('x-auth', `${token}`)
             .send(wrongData1)
         expect(res.body).toHaveProperty(['errors'])
         // is saved in DB?
@@ -30,10 +33,12 @@ describe('Validation', () => {
         const wrongData2 = {
             lastName: faker.name.lastName(),
             email: faker.internet.email(),
-            password: faker.internet.password(10)
+            password: faker.internet.password(10),
+            role: 'User'
         }
         const res = await request(app)
             .post(`/users`)
+            .set('x-auth', `${token}`)
             .send(wrongData2)
         expect(res.body).toHaveProperty(['errors'])
         // is saved in DB?
@@ -48,10 +53,12 @@ describe('Validation', () => {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
             email: faker.internet.email(),
-            password: wrongPassword
+            password: wrongPassword,
+            role: 'User'
         }
         const res = await request(app)
             .post(`/users`)
+            .set('x-auth', `${token}`)
             .send(wrongData3)
         expect(res.body).toHaveProperty(['errors'])
         // is saved in DB?
@@ -64,10 +71,12 @@ describe('Validation', () => {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
             email: faker.internet.email(),
-            password: faker.internet.password(10)
+            password: faker.internet.password(10),
+            role: 'User'
         }
         const res = await request(app)
             .post(`/users`)
+            .set('x-auth', `${token}`)
             .send(fakeUser)
         const checkUser = await User.findById(res.body._id)
         expect(checkUser).toHaveProperty(['email'])
@@ -76,8 +85,27 @@ describe('Validation', () => {
 })
 
 beforeAll(async (done) => {
-    server = app.listen(3000, () => {
+    server = app.listen(3000, async () => {
         global.agent = request.agent(server);
+
+        //login
+        const fakeUser = {
+            firstName: faker.name.firstName(),
+            lastName: faker.name.lastName(),
+            email: faker.internet.email(),
+            password: faker.internet.password(),
+            role: "Admin"
+          }
+          let checkUser = await User.create(fakeUser)
+          //log in user
+          const login = await request(app)
+              .post(`/users/login`)
+              .set('x-auth', `${token}`)
+              .send({
+                  email: fakeUser.email,
+                  password: fakeUser.password
+              })
+          token = login.header["x-auth"]
         done();
     });
 });
