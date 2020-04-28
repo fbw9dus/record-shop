@@ -55,7 +55,7 @@ describe('Users Endpoints', () => {
         expect(checkUser).toEqual(
             expect.objectContaining(fakeUser)
         )
-        const res = await request(app).delete(`/users/${fakeUser.id}`).set('x-auth', `${token}`)
+        const res = await request(app).delete(`/users/${checkUser.id}`).set('x-auth', `${token}`)
         expect(res.statusCode).toBe(200)
         checkUser = User.findOne(fakeUser.id)
         expect(checkUser.length).toBeFalsy()
