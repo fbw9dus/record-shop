@@ -64,6 +64,13 @@
       "points": 4
     },
     {
+      "name": "hashing",
+      "setup": "npm install",
+      "run": "npm test -- __tests__/hashing.js",
+      "timeout": 10,
+      "points": 4
+    },
+    {
       "name": "auth tokens",
       "setup": "npm install",
       "run": "npm test -- __tests__/jwt.js",
