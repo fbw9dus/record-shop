@@ -42,16 +42,19 @@ describe('Users Endpoints', () => {
     })
 
     test('should delete user', async done =>{
-        const fakeUser = new User({
+        const fakeUser = {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
             email: faker.internet.email(),
             password: faker.internet.password(),
             role: 'User'
-        })
-        await fakeUser.save()
-        let checkUser = await User.findById(fakeUser.id).select("-password")
-        expect(checkUser.toObject()).toEqual(fakeUser.toObject())
+        }
+        let checkUser = new User(fakeUser)
+        await checkUser.save()
+        delete fakeUser.password
+        expect(checkUser).toEqual(
+            expect.objectContaining(fakeUser)
+        )
         const res = await request(app).delete(`/users/${fakeUser.id}`).set('x-auth', `${token}`)
         expect(res.statusCode).toBe(200)
         checkUser = User.findOne(fakeUser.id)
