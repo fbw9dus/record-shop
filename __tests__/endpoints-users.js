@@ -50,7 +50,7 @@ describe('Users Endpoints', () => {
             role: 'User'
         })
         await fakeUser.save()
-        let checkUser = await User.findById(fakeUser.id)
+        let checkUser = await User.findById(fakeUser.id).select("-password")
         expect(checkUser.toObject()).toEqual(fakeUser.toObject())
         const res = await request(app).delete(`/users/${fakeUser.id}`).set('x-auth', `${token}`)
         expect(res.statusCode).toBe(200)
