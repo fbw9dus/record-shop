@@ -56,7 +56,7 @@ describe('DB Relations', () => {
             .post(`/orders`)
             .set('x-auth', `${token}`)
             .send(fakeOrder)
-        const res = await request(app).set('x-auth', `${token}`).get(`/orders/${resOrder.body._id}`)
+        const res = await request(app).get(`/orders/${resOrder.body._id}`).set('x-auth', `${token}`)
         expect(res.body).toHaveProperty('record')
         expect(res.body.record).toHaveProperty('title')
         expect(res.body.record).toHaveProperty('artist')
