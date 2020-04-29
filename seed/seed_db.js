@@ -29,13 +29,14 @@ console.log("I shall seed");
   const userPromises = Array(10)
     .fill(null)
     .map(() => {
+      let u,p;
       const user = new User({
         firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
-        email: faker.internet.email(),
-        password: faker.internet.password()
+        lastName:  faker.name.lastName(),
+        email:     u = faker.internet.email(),
+        password:  p = faker.internet.password()
       });
-
+      console.log(u,p);
       return user.save();
     });
 
