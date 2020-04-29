@@ -51,20 +51,25 @@ exports.addUser = async (req, res, next) => {
   } catch (error) {
     next(error)
   }
-  
+
 };
 
 exports.loginUser = async (req, res, next) => {
   const { email, password } = req.body
 
   try {
-    const user = await User.findOne({ email }).select('+password')
-    const valid = encryption.compare(password, user.password)
+    const user  = await User.findOne({ email }).select('+password')
+
+    // important: the result of encryption.compare is a Promise
+    //   which is truthy, we need to await to get the real result
+    const valid = await encryption.compare(password, user.password)
+
+    // important: check if [valid] is exactly not true
+    //   in any other case: bail!
+    if ( valid !== true ) throw new createError.NotFound()
 
     const token = user.generateAuthToken()
     await user.save()
-    
-    if(!valid) throw new createError.NotFound()
 
     res
       .status(200)
@@ -74,5 +79,5 @@ exports.loginUser = async (req, res, next) => {
   } catch (error) {
     next(error)
   }
-  
+
 }
