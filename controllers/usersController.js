@@ -60,10 +60,20 @@ exports.getUsers = async (req, res, next) => {
 */
 
 exports.getUser = async (req, res, next) => {
+  const { user } = req;
   const { id } = req.params;
   // Schreib hier code um den Kunden mit der id aus params aus der users-Collection zu holen
-  const user = await User.findById(id)
-  res.status(200).send(user);
+  const u = await User.findById(id);
+
+  if ( user.group.includes('admin') || user.id === id ){
+    res.status(200).send(u);
+  }
+
+  else if ( user ){
+    const { firstName, lastName } = u;
+    res.status(200).send({ firstName, lastName });
+  }
+
 };
 
 /*
