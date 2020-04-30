@@ -1,7 +1,21 @@
-const User = require('../models/User')
+
+const mailer             = require('nodemailer');
 const {validationResult} = require('express-validator')
-const createError = require("http-errors")
+const createError        = require("http-errors")
+
+const User = require('../models/User')
+
+const { SHA512 } = require('../lib/crypto.js');
 const encryption = require('../lib/validation/encryption')
+
+const transporter = mailer.createTransport({
+  host:'email server',
+  port: 465,
+  auth:{
+    user:'record-shop@server.de',
+    pass:'email passwort'
+  }
+});
 
 exports.getUsers = async (req, res, next) => {
   // Schreib hier code um alle Kunden aus der users-Collection zu holen
@@ -42,15 +56,37 @@ exports.addUser = async (req, res, next) => {
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }
-    const user = req.body;
+    let user = req.body;
     user.email = user.email.toLowerCase();
 
     // Schreib hier code um die Daten des neuen Kunden aus req.body in der users-Collection zu speichern
-    await User.init()
-    const newUser = new User(user)
-    await newUser.save()
-    res.status(200).send(newUser);
+    await User.init();
+    user = new User(user);
+
+    // generiere ein Token für die aktivierungs email
+    const token = SHA512( "!record-shop!!!" + Date.now() + user.email );
+    user.activationLink = token;
+    console.log('register',user.email,token);
+    // sende eMail
+    transporter.sendMail({
+      to: user.email,
+      from: 'record-shop@hktr.de',
+      subject: 'Activation link for TheRecordShop',
+      html: `
+      <h1>Ihr Account wurde Bereitgestellt</h1>
+      <p>Nutzen sie jetzt unsere ...</p>
+      <a href="http://localhost:3000/activate/${token}">
+        Jetzt Aktivieren
+      </a>
+      `
+    },(err,info)=>{
+      console.log('mail',err,info);
+    })
+
+    await user.save()
+    res.status(200).send(user);
   } catch (error) {
+    console.error(error);
     next(error)
   }
 
@@ -59,11 +95,14 @@ exports.addUser = async (req, res, next) => {
 exports.loginUser = async (req, res, next) => {
   const { email, password } = req.body
   try {
+
     const user = await User.findOne({
       email: email.toLowerCase()
     }).select('+password')
 
     if ( ! user ) throw new createError.NotFound();
+
+    if ( ! user.activated ) throw new createError.NotFound();
 
     // important: the result of encryption.compare is a Promise
     //   which is truthy, we need to await to get the real result
@@ -92,4 +131,19 @@ exports.loginUser = async (req, res, next) => {
     next(new createError.NotFound())
   }
 
+}
+
+exports.activateUser = async function( req, res, next ){
+  const { token } = req.params;
+  const user = await User.findOne(
+    { activationLink: token }
+  );
+  if ( user ){
+    user.activated = true;
+    user.activationLink = null;
+    user.save();
+    res.json({status:'success'});
+  } else {
+    res.status(401).json({status:'failed'});
+  }
 }

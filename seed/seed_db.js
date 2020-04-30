@@ -1,16 +1,12 @@
-var faker = require("faker");
+
+const faker    = require("faker");
 const mongoose = require("mongoose");
+
 const User = require("../models/User");
 
+const { SHA512 } = require('../lib/crypto.js');
+
 console.log("I shall seed");
-
-const crypto = require('crypto');
-
-const SHA512 = (data)=> {
-  const hash = crypto.createHash('sha512');
-  hash.update(data);
-  return hash.digest('hex');
-}
 
 (async function() {
   /**CONNECT TO DB */

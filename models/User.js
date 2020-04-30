@@ -33,6 +33,14 @@ const UserSchema = new Schema(
     failedLogins: [{
       type:Date,default:Date.now
     }],
+    activationLink:{
+      type:String,
+      required:false
+    },
+    activated:{
+      type:Boolean,
+      default:false
+    },
     group: [{type:String}],
     tokens: [
       {

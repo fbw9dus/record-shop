@@ -20,14 +20,15 @@
     "jsonwebtoken": "^8.5.1",
     "lowdb": "^1.0.0",
     "mongoose": "^5.7.1",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "nodemailer": "^6.4.6"
   },
   "devDependencies": {
-    "nodemon": "^1.19.2",
     "@babel/core": "*",
     "@babel/preset-env": "*",
     "babel-jest": "*",
     "jest": "*",
+    "nodemon": "^1.19.2",
     "supertest": "^4.0.2"
   }
 }
