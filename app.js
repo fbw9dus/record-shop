@@ -1,3 +1,7 @@
+
+/** LOAD CONFIGURATION **/
+require('dotenv').config()
+
 /** EXTERNAL DEPENDENCIES */
 const express = require("express");
 const path = require("path");
@@ -19,7 +23,9 @@ const app = express();
 app.use(logger("dev"));
 
 /**CONNECT TO DB */
-mongoose.connect("mongodb://localhost:27017/record-shop", {
+mongoose.connect(
+  process.env.MONGO_URL || "mongodb://localhost:27017/record-shop"
+,{
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true

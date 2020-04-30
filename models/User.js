@@ -33,14 +33,11 @@ const UserSchema = new Schema(
     failedLogins: [{
       type:Date,default:Date.now
     }],
-    activationLink:{
-      type:String,
-      required:false
-    },
-    activated:{
-      type:Boolean,
-      default:false
-    },
+    activated:     { type:Boolean, default:false },
+    activationLink:{ type:String, required:false },
+    activationDate:{ type:Date,   required:false },
+    resetLink:     { type:String, required:false },
+    resetDate:     { type:Date,   required:false },
     group: [{type:String}],
     tokens: [
       {

@@ -9,7 +9,9 @@ const {
   deleteUser,
   addUser,
   loginUser,
-  activateUser
+  activateUser,
+  resetUserPassword,
+  changeUserPassword
 } = require("../controllers/usersController");
 
 router
@@ -21,6 +23,9 @@ router.route("/login")
   .post(loginUser)
 
 router.get("/activate/:token",activateUser)
+router
+  .get("/reset/:email",resetUserPassword)
+  .put("/changePassword/:token",changeUserPassword)
 
 router
   .route("/:id")
