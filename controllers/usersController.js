@@ -44,7 +44,7 @@ exports.addUser = async (req, res, next) => {
     }
     const user = req.body;
     user.email = user.email.toLowerCase();
-    console.log('registered', req.body);
+
     // Schreib hier code um die Daten des neuen Kunden aus req.body in der users-Collection zu speichern
     await User.init()
     const newUser = new User(user)

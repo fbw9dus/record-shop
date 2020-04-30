@@ -33,6 +33,7 @@ const UserSchema = new Schema(
     failedLogins: [{
       type:Date,default:Date.now
     }],
+    group: [{type:String}],
     tokens: [
       {
         token: {
