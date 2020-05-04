@@ -5,6 +5,7 @@ const Order = require('../models/Order')
 const Record = require('../models/Record')
 const {exec} = require('child_process')
 const faker = require('faker')
+const User = require('../models/User')
 
 let server;
 let token;
