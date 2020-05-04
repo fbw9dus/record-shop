@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 const AddressSchema = require('./Address')
 const encryption = require('../lib/validation/encryption')
 const jwt = require('jsonwebtoken')
-const superSecretKey = "ohpkß05zzj5766571kk7?&/"
+const env = require('../config/config')
 
 const UserSchema = new Schema(
   {
@@ -24,6 +24,11 @@ const UserSchema = new Schema(
       type: String,
       required: true,
       select: false
+    },
+    role: {
+      type: String,
+      required: true,
+      enum: ["Admin", "User"]
     },
     address: AddressSchema,
     orders: [{
@@ -75,7 +80,7 @@ UserSchema.methods.generateAuthToken = function() {
   const user = this
   const access = "auth"
   const token = jwt
-    .sign({ _id: user._id.toHexString(), access}, superSecretKey)
+    .sign({ _id: user._id.toHexString(), access}, env.jwt_key)
     .toString()
 
     user.tokens.push({token, access})
@@ -88,7 +93,7 @@ UserSchema.statics.findByToken = function(token) {
   let decoded
 
   try {
-    decoded = jwt.verify(token, superSecretKey);
+    decoded = jwt.verify(token, env.jwt_key);
   } catch (e) {
     return;
   }
