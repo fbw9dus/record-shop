@@ -12,7 +12,6 @@ const recordsRouter = require("./routes/records");
 const ordersRouter = require("./routes/orders");
 
 const { setCors } = require("./middleware/security");
-const env = require('./config/config')
 
 /** INIT */
 const app = express();
@@ -20,10 +19,8 @@ const app = express();
 /** LOGGING */
 app.use(logger("dev"));
 
-console.log("Using DB", env.db)
-
 /**CONNECT TO DB */
-mongoose.connect(env.db, {
+mongoose.connect(process.env.DB, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true
