@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "watch": "DEBUG=record-shop:* nodemon --inspect ./bin/www",
-    "remote": "NODE_ENV=production DEBUG=record-shop:* nodemon --inspect ./bin/www",
+    "watch": "DB=mongodb://localhost:27017/record-shop JWT_KEY=09680v34vvj802jvc DEBUG=record-shop:* nodemon --inspect ./bin/www",
+    "remote": "NODE_ENV=production JWT_KEY=09680v34vvj802jvc DEBUG=record-shop:* nodemon --inspect ./bin/www",
     "seed": "node seed/seed_db.js",
     "purge": "node seed/purge_db.js",
     "test": "jest --runInBand"
@@ -14,6 +14,7 @@
     "bcrypt": "^4.0.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
     "express": "~4.16.1",
     "express-validator": "^6.4.0",
     "faker": "^4.1.0",
