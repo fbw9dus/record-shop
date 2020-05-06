@@ -1,16 +1,8 @@
 const Record = require('../models/Record')
 const createError = require('http-errors')
+const { getPaginatedList } = require('./abstractControllers');
 
-exports.getRecords = async (req, res, next) => {
-  // Schreib hier code um alle records aus der records-Collection zu holen
-  try {
-    const records = await Record.find()
-    res.status(200).send(records);
-  } catch (error) {
-    next(error)
-  }
-  
-};
+exports.getRecords = getPaginatedList(Record);
 
 exports.getRecord = async (req, res, next) => {
   try {
@@ -22,7 +14,7 @@ exports.getRecord = async (req, res, next) => {
   } catch (error) {
     next(error)
   }
-  
+
 };
 
 exports.deleteRecord = async (req, res, next) => {

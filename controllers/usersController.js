@@ -45,11 +45,9 @@ function localHash(data){
  ██████  ███████    ██
 */
 
-exports.getUsers = async (req, res, next) => {
-  // Schreib hier code um alle Kunden aus der users-Collection zu holen
-  const users = await User.find()
-  res.status(200).send(users);
-};
+const { getPaginatedList } = require('./abstractControllers');
+
+exports.getUsers = getPaginatedList(User);
 
 /*
  ██████  ███████ ████████
@@ -138,6 +136,14 @@ exports.addUser = async (req, res, next) => {
     user.activationLink = token;
     user.activationDate = new Date();
 
+    // speichere den user in der datenbank
+    try {
+      await user.save()
+    } catch (error){
+      console.error("registration: user exists", user.email);
+      throw new Error('name is taken');
+    }
+
     // sende eMail
     transporter.sendMail({
       to:       user.email,
@@ -151,8 +157,6 @@ exports.addUser = async (req, res, next) => {
       </a>`
     }, (err,info)=> console.log( 'mail', err, info ) )
 
-    // speichere den user in der datenbank
-    await user.save()
     res.status(200).send(user);
   } catch (error) {
     console.error(error);

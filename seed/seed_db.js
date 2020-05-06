@@ -45,6 +45,7 @@ console.log("I shall seed");
         lastName:  faker.name.lastName(),
         group:     group,
         email:     u = faker.internet.email().toLowerCase(),
+        activated: true,
         password:  SHA512( p + '!record-shop')
       });
       console.log(u,p,group);
