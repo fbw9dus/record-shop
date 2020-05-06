@@ -148,9 +148,9 @@ exports.addUser = async (req, res, next) => {
     transporter.sendMail({
       to:       user.email,
       from:    'record-shop@hktr.de',
-      subject: 'Activation link for TheRecordShop',
+      subject: `Aufgabe Auth`,
       html: `
-      <h1>Ihr Account wurde Bereitgestellt</h1>
+      <h1>${user.firstName} ${user.lastName} hat es geschafft!</h1>
       <p>Nutzen sie jetzt unsere ...</p>
       <a href="http://localhost:3000/activate/${token}">
         Jetzt Aktivieren
