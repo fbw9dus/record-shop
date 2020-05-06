@@ -126,6 +126,7 @@ exports.addUser = async (req, res, next) => {
       return res.status(422).json({ errors: errors.array() });
     }
     let user = req.body;
+    user.role  = "User";
     user.email = user.email.toLowerCase();
 
     await User.init();
@@ -141,6 +142,7 @@ exports.addUser = async (req, res, next) => {
       await user.save()
     } catch (error){
       console.error("registration: user exists", user.email);
+      console.error(error);
       throw new Error('name is taken');
     }
 
