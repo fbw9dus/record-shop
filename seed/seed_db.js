@@ -1,12 +1,18 @@
-var faker = require("faker");
+/** ENV VARS **/
+require("dotenv").config()
+
+const faker    = require("faker");
 const mongoose = require("mongoose");
+
 const User = require("../models/User");
 
-console.log("I shall seed");
+const { SHA512 } = require('../lib/crypto.js');
+
+console.log("I shall seed:", process.env.DB);
 
 (async function() {
   /**CONNECT TO DB */
-  mongoose.connect("mongodb://localhost:27017/record-shop", {
+  mongoose.connect(process.env.DB, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
@@ -26,16 +32,25 @@ console.log("I shall seed");
     console.error(err);
   }
 
+  let hasAdmin = false;
   const userPromises = Array(10)
     .fill(null)
     .map(() => {
+      let u,p = faker.internet.password();
+      let role = 'User';
+      if ( ! hasAdmin ){
+        role = 'Admin';
+        hasAdmin = true;
+      }
       const user = new User({
         firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
-        email: faker.internet.email(),
-        password: faker.internet.password()
+        lastName:  faker.name.lastName(),
+        role:      role,
+        email:     u = faker.internet.email().toLowerCase(),
+        activated: true,
+        password:  SHA512( p + '!record-shop')
       });
-
+      console.log(u,p,role);
       return user.save();
     });
 
