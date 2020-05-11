@@ -1,9 +1,9 @@
 
-const mailer             = require('nodemailer');
-const {validationResult} = require('express-validator')
-const createError        = require("http-errors")
+const mailer               = require('nodemailer');
+const { validationResult } = require('express-validator');
+const createError          = require("http-errors");
 
-const User = require('../models/User')
+const User = require('../models/User');
 
 const { SHA512 } = require('../lib/crypto.js');
 const encryption = require('../lib/validation/encryption')
@@ -62,7 +62,9 @@ exports.getUser = async (req, res, next) => {
   const { id } = req.params;
   // Schreib hier code um den Kunden mit der id aus params aus der users-Collection zu holen
 
-  const u = await User.findById(id);
+  const u = await User
+    .findById(id)
+    .populate('orders');
 
   if ( user.role === "Admin" || user.id === u.id ){
     res.status(200).send(u);
