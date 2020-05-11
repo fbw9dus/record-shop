@@ -1,6 +1,17 @@
 /** ENV VARS **/
 require("dotenv").config()
 
+if ( ! (
+process.env.DB
+)) {
+  console.log('');
+  console.log('Please provide a .env file or set the following:');
+  ['DB'].forEach(
+    env => console.log(' ', env)
+  )
+  console.log('');
+  process.exit(1); }
+
 const faker    = require("faker");
 const mongoose = require("mongoose");
 
