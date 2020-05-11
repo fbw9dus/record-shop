@@ -1,6 +1,21 @@
 /** ENV VARS **/
 require("dotenv").config()
 
+if ( ! (
+process.env.DB
+&& process.env.MAIL_SERVER
+&& process.env.MAIL_USER
+&& process.env.MAIL_PASS
+&& process.env.JWT_KEY
+)) {
+  console.log('');
+  console.log('Please provide a .env file or set the following:');
+  ['DB','MAIL_SERVER','MAIL_USER','MAIL_PASS','JWT_KEY'].forEach(
+    env => console.log(' ', env)
+  )
+  console.log('');
+  process.exit(1); }
+
 /** EXTERNAL DEPENDENCIES */
 const express = require("express");
 const path = require("path");
