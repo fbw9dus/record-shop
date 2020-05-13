@@ -4,6 +4,8 @@ const auth = require("../middleware/authenticator")
 const isAdmin = require("../middleware/rolesAuthenticator")
 const {
   getOrders,
+  getUserOrders,
+  toggleOrderOpen,
   getOrder,
   updateOrder,
   deleteOrder,
@@ -14,6 +16,14 @@ router
   .route("/")
   .get(auth, isAdmin, getOrders)
   .post(auth, addOrder);
+
+router
+  .route("/self")
+  .get(auth, getUserOrders)
+
+router
+  .route("/toggle/:id")
+  .put(auth, isAdmin, toggleOrderOpen)
 
 router
   .route("/:id")
