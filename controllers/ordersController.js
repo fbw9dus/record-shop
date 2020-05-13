@@ -29,7 +29,10 @@ exports.deleteOrder = (req, res, next) => {
 
 exports.toggleOrderOpen = async (req, res, next) => {
   const { id } = req.params;
-  const order  = await Order.findById(id);
+  const order  = await
+    Order.findById(id)
+      .populate('record')
+      .populate('user');
   order.isOpen = ! order.isOpen;
   await order.save()
   // email an den Kunden
