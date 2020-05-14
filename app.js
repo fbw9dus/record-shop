@@ -17,6 +17,7 @@ process.env.DB
   process.exit(1); }
 
 /** EXTERNAL DEPENDENCIES */
+const colors = require('colors');
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
@@ -57,6 +58,10 @@ app.use(setCors);
 
 /** STATIC FILES*/
 app.use(express.static(path.join(__dirname, "public")));
+
+/** PASSPORT **/
+const authPassport = require('./auth/passport');
+authPassport(app);
 
 /** ROUTES */
 app.use("/", indexRouter);

@@ -170,54 +170,6 @@ exports.addUser = async (req, res, next) => {
 };
 
 /*
-██       ██████   ██████  ██ ███    ██
-██      ██    ██ ██       ██ ████   ██
-██      ██    ██ ██   ███ ██ ██ ██  ██
-██      ██    ██ ██    ██ ██ ██  ██ ██
-███████  ██████   ██████  ██ ██   ████
-*/
-
-exports.loginUser = async (req, res, next) => {
-  const { email, password } = req.body
-  try {
-    const user = await User.findOne({
-      email: email.toLowerCase()
-    }).select('+password')
-
-    if ( ! user ) throw new createError.NotFound();
-
-    if ( ! user.activated ) throw new createError.NotFound();
-
-    // important: the result of encryption.compare is a Promise
-    //   which is truthy, we need to await to get the real result
-    const valid = await encryption.compare(password, user.password)
-
-    if ( valid === false ) {
-      user.addFailedLoginAttempt();
-      await user.save()
-      throw new createError.NotFound();
-    }
-
-    // important: check if [valid] is exactly not true
-    //   in any other case: bail!
-    if ( valid !== true ) throw new createError.NotFound();
-
-    const token = user.generateAuthToken()
-    await user.save()
-
-    res
-      .status(200)
-      .header("x-auth", token)
-      .send(user)
-
-  } catch (error) {
-    console.error('login error',error);
-    next(new createError.NotFound())
-  }
-
-}
-
-/*
  █████   ██████ ████████ ██ ██    ██  █████  ████████ ███████
 ██   ██ ██         ██    ██ ██    ██ ██   ██    ██    ██
 ███████ ██         ██    ██ ██    ██ ███████    ██    █████

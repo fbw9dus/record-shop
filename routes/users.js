@@ -16,7 +16,6 @@ const {
   updateUser,
   deleteUser,
   addUser,
-  loginUser,
   activateUser,
   resetUserPassword,
   changeUserPassword
@@ -24,19 +23,18 @@ const {
 
 router
   .route("/")
-  .get(auth, isAdmin, getUsers)
-  .post(validateInputs(userValidationRules), addUser);
+  .get( auth, isAdmin, getUsers )
+  .post( validateInputs(userValidationRules), addUser);
 
 router
-  .post("/login",loginUser)
   .get("/activate/:token",activateUser)
   .get("/reset/:email",resetUserPassword)
   .put("/changePassword/:token",changeUserPassword)
 
 router
   .route("/:id")
-  .get(auth, getUser)
-  .delete(auth, deleteUser)
-  .put(auth, updateUser);
+  .get( auth, getUser )
+  .delete( auth, isAdmin, deleteUser )
+  .put( auth, updateUser );
 
 module.exports = router;

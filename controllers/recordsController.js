@@ -28,7 +28,8 @@ exports.updateRecord = async (req, res, next) => {
   const { id } = req.params;
   const dt = req.body;
   // Schreib hier code um das record mit der id aus params in der records-Collection mit den Daten aus req.body zu aktualisieren
-  const record = await Record.findByIdAndUpdate(id, dt)
+  let record = await Record.findByIdAndUpdate(id, dt)
+  record = await Record.findById(id)
   res.status(200).send(record);
 };
 

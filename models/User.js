@@ -6,29 +6,12 @@ const jwt = require('jsonwebtoken')
 
 const UserSchema = new Schema(
   {
-    firstName: {
-      type: String,
-      required: true
-    },
-    lastName: {
-      type: String,
-      required: true
-    },
-    email: {
-      type: 'String',
-      required: true,
-      unique: true
-    },
-    password: {
-      type: String,
-      required: true,
-      select: false
-    },
-    role: {
-      type: String,
-      required: true,
-      enum: ["Admin", "User"]
-    },
+    displayName: { type: String },
+    firstName:   { type: String, required: true },
+    lastName:    { type: String, required: true },
+    email:       { type: String, required: true, unique: true },
+    password:    { type: String, required: true, select: false },
+    role:        { type: String, required: true, enum: ["Admin", "User"] },
     address: AddressSchema,
     orders: [{
       ref: "Order",

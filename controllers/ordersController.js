@@ -22,11 +22,6 @@ exports.getOrder = async (req, res, next) => {
   res.status(200).send(order);
 };
 
-exports.deleteOrder = (req, res, next) => {
-  const { id } = req.params;
-  res.status(200).send(order);
-};
-
 exports.toggleOrderOpen = async (req, res, next) => {
   const { id } = req.params;
   const order  = await
@@ -36,12 +31,6 @@ exports.toggleOrderOpen = async (req, res, next) => {
   order.isOpen = ! order.isOpen;
   await order.save()
   // email an den Kunden
-  res.status(200).send(order);
-};
-
-exports.updateOrder = (req, res, next) => {
-  const { id } = req.params;
-  const dt = req.body;
   res.status(200).send(order);
 };
 
