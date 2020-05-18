@@ -6,10 +6,10 @@ exports.getRecords = async (req, res, next) => {
   res.status(200).send(records);
 };
 
-exports.getRecord = (req, res, next) => {
+exports.getRecord = async (req, res, next) => {
   const { id } = req.params;
   // Schreib hier code um das record mit der id aus params aus der records-Collection zu holen
-
+  const record = await Record.findById(id)
   res.status(200).send(record);
 };
 
